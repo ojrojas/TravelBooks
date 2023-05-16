@@ -1,6 +1,5 @@
-﻿namespace TravelBooks.Identity.Data
+﻿namespace TravelBooks.Identity.Data;
+
+public class TravelBooksIdentityContext : DbContext
 {
-    public class TravelBooksIdentityContext
-    {
-    }
 }
