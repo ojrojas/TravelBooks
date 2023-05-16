@@ -1,7 +1,6 @@
-namespace TravelBooks.Identity.Interfaces
+namespace TravelBooks.Identity.Interfaces;
+
+public interface ITokenClaims 
 {
-    public interface ITokenClaims 
-    {
-        Task<string> GetTokenAsync(string userName, string Password);
-    }
+    Task<string> GetTokenAsync(string userName, string Password);
 }

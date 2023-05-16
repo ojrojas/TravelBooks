@@ -1,7 +1,6 @@
-namespace TravelBooks.Identity.Interfaces
+namespace TravelBooks.Identity.Interfaces;
+
+public interface ILoginService
 {
-    public interface ILoginService
-    {
-        Task<string> Login(ApplicationUser user);
-    }
+    Task<string> Login(ApplicationUser user);
 }

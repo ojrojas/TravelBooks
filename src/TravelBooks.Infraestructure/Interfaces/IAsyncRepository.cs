@@ -1,4 +1,5 @@
 ﻿namespace TravelBooks.Infraestructure.Interfaces;
+
 public interface IAsyncRepository<T> where T : class, IAggregateRoot
 {
     Task<int> CountAsync(CancellationToken cancellationToken);
