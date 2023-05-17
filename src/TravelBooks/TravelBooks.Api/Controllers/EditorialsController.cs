@@ -1,72 +1,63 @@
-﻿using Core.Entities;
-using Core.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿namespace TravelBooks.Api.Controllers;
 
-namespace Api.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class EditorialsController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class EditorialsController : ControllerBase
+    private readonly IEditorialService _editorialService;
+
+    public EditorialsController(IEditorialService editorialService)
     {
-        private readonly IEditorialService _editorialService;
+        _editorialService = editorialService;
+    }
 
-        public EditorialsController(IEditorialService editorialService)
-        {
-            _editorialService = editorialService;
-        }
-
-        [HttpGet]
-        /// <summary>
-        /// Get Editorial App
-        /// </summary>
-        /// <returns>List Users</returns>
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(IReadOnlyList<Editorial>), StatusCodes.Status200OK)]
-        public async Task<IEnumerable<Editorial>> GetAllAsync()
-        {
-            return await this._editorialService.GetAllEditorials();
-        }
+    [HttpGet]
+    /// <summary>
+    /// Get Editorial App
+    /// </summary>
+    /// <returns>List Users</returns>
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(IReadOnlyList<Editorial>), StatusCodes.Status200OK)]
+    public async Task<ListEditorialResponse> GetAllAsync(CancellationToken cancellationToken)
+    {
+        return await _editorialService.GetAllEditorialsAsync(new ListEditorialRequest(), cancellationToken);
+    }
 
 
-        [HttpPost]
-        /// <summary>
-        /// Post Editorial App
-        /// </summary>
-        /// <returns>User created</returns>
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(Editorial), StatusCodes.Status200OK)]
-        public async Task<Editorial> CreateAsync([FromBody] Editorial editorial)
-        {
-            return await this._editorialService.Create(editorial);
-        }
+    [HttpPost]
+    /// <summary>
+    /// Post Editorial App
+    /// </summary>
+    /// <returns>User created</returns>
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(Editorial), StatusCodes.Status200OK)]
+    public async ValueTask<CreateEditorialResponse> CreateAsync([FromBody] CreateEditorialRequest request, CancellationToken cancellationToken)
+    {
+        return await _editorialService.CreateEditorialAsync(request, cancellationToken);
+    }
 
 
-        [HttpPut]
-        /// <summary>
-        /// Put Editorial App
-        /// </summary>
-        /// <returns>User created</returns>
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(Editorial), StatusCodes.Status200OK)]
-        public async Task<Editorial> UpdateAsync(Editorial editorial)
-        {
-            return await this._editorialService.Edit(editorial);
-        }
+    [HttpPut]
+    /// <summary>
+    /// Put Editorial App
+    /// </summary>
+    /// <returns>User created</returns>
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(Editorial), StatusCodes.Status200OK)]
+    public async ValueTask<UpdateEditorialResponse> UpdateAsync(UpdateEditorialRequest request, CancellationToken cancellationToken)
+    {
+        return await _editorialService.UpdateEditorialAsync(request, cancellationToken);
+    }
 
-        [HttpDelete("{Id}")]
-        /// <summary>
-        /// Delete Editorial App
-        /// </summary>
-        /// <returns>User created</returns>
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(Editorial), StatusCodes.Status200OK)]
-        public async Task<Editorial> DeleteAsync(Guid Id)
-        {
-            return await this._editorialService.Delete(Id);
-        }
+    [HttpDelete("{Id}")]
+    /// <summary>
+    /// Delete Editorial App
+    /// </summary>
+    /// <returns>User created</returns>
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(Editorial), StatusCodes.Status200OK)]
+    public async ValueTask<DeleteEditorialResponse> DeleteAsync([FromRoute]DeleteEditorialRequest request, CancellationToken cancellationToken)
+    {
+        return await _editorialService.DeleteEditorialAsync(request, cancellationToken);
     }
 }

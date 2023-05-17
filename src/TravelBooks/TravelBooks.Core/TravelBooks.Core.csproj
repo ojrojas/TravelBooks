@@ -8,8 +8,24 @@
 
   <ItemGroup>
     <None Remove="Specifications\" />
+    <None Remove="Repositories\" />
+    <None Remove="Contexts\" />
+    <None Remove="Dtos\" />
+    <None Remove="Dtos\Authors\" />
+    <None Remove="Dtos\Editorials\" />
+    <None Remove="Dtos\Books\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Specifications\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Contexts\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Dtos\Authors\" />
+    <Folder Include="Dtos\Editorials\" />
+    <Folder Include="Dtos\Books\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\TravelBooks.Infraestructure\TravelBooks.Infraestructure.csproj" />
+    <ProjectReference Include="..\..\TravelBooks.Commons\TravelBooks.Commons.csproj" />
   </ItemGroup>
 </Project>

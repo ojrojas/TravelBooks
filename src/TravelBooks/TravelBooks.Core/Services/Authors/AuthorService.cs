@@ -1,39 +1,59 @@
-﻿using Core.Entities;
-using Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿namespace TravelBooks.Core.Services;
 
-namespace Core.Services.Authors
+public class AuthorService : IAuthorService
 {
-    public  class AuthorService : IAuthorService
+    private readonly AuthorRepository _repository;
+    private readonly ILogger<AuthorService> _logger;
+
+    public AuthorService(AuthorRepository repository, ILogger<AuthorService> logger)
     {
-        private readonly IAsyncRepository<Author> _asyncRepository;
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    }
 
-        public AuthorService(IAsyncRepository<Author> asyncRepository)
-        {
-            this._asyncRepository = asyncRepository;
-        }
+    public async ValueTask<CreateAuthorResponse> CreateAuthorAsync(CreateAuthorRequest request, CancellationToken cancellationToken)
+    {
+        CreateAuthorResponse response = new(request.Correlation);
+        if (request.Author is null) throw new ArgumentNullException(nameof(request));
+        _logger.LogInformation($"Create author {JsonSerializer.Serialize(request.Author)}");
+        response.AuthorCreated = await _repository.CreateAsync(request.Author, cancellationToken);
+        return response;
+    }
 
-        public async Task<Author> Create(Author author)
-        {
-            return await this._asyncRepository.CreateAsync(author); 
-        }
+    public async ValueTask<DeleteAuthorResponse> DeleteAuthorAsync(DeleteAuthorRequest request, CancellationToken cancellationToken)
+    {
+        DeleteAuthorResponse response = new(request.Correlation);
+        if (request.Id.Equals(Guid.Empty)) throw new ArgumentNullException(nameof(request));
+        _logger.LogInformation($"Create author {JsonSerializer.Serialize(request.Id)}");
+        var author = await _repository.GetByIdAsync(request.Id, cancellationToken);
+        response.AuthorDeleted = await _repository.DeleteAsync(author, cancellationToken);
+        return response;
+    }
 
-        public async Task<Author> Delete(Guid Id)
-        {
-            var author = await this._asyncRepository.GetByIdAsync(Id);
-            return await this._asyncRepository.DeleteAsync(author, author.Id);
-        }
+    public async Task<UpdateAuthorResponse> UpdateAuthorAsync(UpdateAuthorRequest request, CancellationToken cancellationToken)
+    {
+        UpdateAuthorResponse response = new(request.Correlation);
+        if (request.Author is null) throw new ArgumentNullException(nameof(request));
+        _logger.LogInformation($"Create author {JsonSerializer.Serialize(request.Author)}");
+        response.AuthorUpdated = await _repository.UpdateAsync(request.Author, cancellationToken);
+        return response;
+    }
 
-        public async Task<Author> Edit(Author author)
-        {
-            return await this._asyncRepository.UpdateAsync(author);
-        }
+    public async Task<ListAuthorResponse> GetAllAuthorsAsync(ListAuthorRequest request, CancellationToken cancellationToken)
+    {
+        ListAuthorResponse response = new(request.Correlation);
+        if (request is null) throw new ArgumentNullException(nameof(request));
+        _logger.LogInformation($"Create author {JsonSerializer.Serialize(request)}");
+        response.Authors = await _repository.ListAsync(cancellationToken);
+        return response;
+    }
 
-        public async Task<IEnumerable<Author>> GetAllAuthors()
-        {
-            return await this._asyncRepository.GetAllAsync();
-        }
+    public async Task<GetAuthorByIdResponse> GetAuthorByIdAsync(GetAuthorByIdRequest request, CancellationToken cancellationToken)
+    {
+        GetAuthorByIdResponse response = new(request.Correlation);
+        if (request is null) throw new ArgumentNullException(nameof(request));
+        _logger.LogInformation($"Create author {JsonSerializer.Serialize(request)}");
+        response.AuthorFound = await _repository.GetByIdAsync(request.Id, cancellationToken);
+        return response;
     }
 }

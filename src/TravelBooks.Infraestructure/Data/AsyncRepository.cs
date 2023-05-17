@@ -4,11 +4,11 @@ namespace TravelBooks.Infraestructure.Data;
 /// Repository AppContext
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public abstract class AsyncRepository<T> : IAsyncRepository<T> where T : class, IAggregateRoot
+public abstract class AsyncRepository<T>  where T : class, IAggregateRoot
 {
     private readonly ILogger<AsyncRepository<T>> _logger;
     private readonly DbContext _context;
-    private ISpecificationEvaluator _specificationEvaluator;
+    private readonly ISpecificationEvaluator _specificationEvaluator;
 
     /// <summary>
     /// Generic Repository

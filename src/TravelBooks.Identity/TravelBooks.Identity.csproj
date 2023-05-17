@@ -17,7 +17,17 @@
     <PackageReference Include="Ardalis.Specification" Version="6.1.0" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.30.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.30.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.5" />
+    <PackageReference Include="Serilog" Version="2.12.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="7.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="7.0.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+    <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
+    <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +36,8 @@
     <None Remove="DI\" />
     <None Remove="Configuration\" />
     <None Remove="Services\" />
+    <None Remove="Dtos\" />
+    <None Remove="Endpoints\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
@@ -33,9 +45,14 @@
     <Folder Include="DI\" />
     <Folder Include="Configuration\" />
     <Folder Include="Services\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Endpoints\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TravelBooks.Infraestructure\TravelBooks.Infraestructure.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\TravelBooks.Commons\TravelBooks.Commons.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>

@@ -1,73 +1,63 @@
-﻿using Core.Entities;
-using Core.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿namespace TravelBooks.Api.Controllers;
 
-namespace Api.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class BooksController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class BooksController : ControllerBase
+    private readonly IBookService _bookService;
+
+    public BooksController(IBookService bookService)
     {
-        private readonly IBookService _bookService;
+        _bookService = bookService;
+    }
 
-        public BooksController(IBookService bookService)
-        {
-            this._bookService = bookService;
-        }
-
-        [HttpGet]
-        /// <summary>
-        /// Get Books App
-        /// </summary>
-        /// <returns>List Users</returns>
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(IReadOnlyList<Book>), StatusCodes.Status200OK)]
-        public async Task<IEnumerable<Book>> GetAllAsync()
-        {
-            return await this._bookService.GetAllBooks();
-        }
+    [HttpGet]
+    /// <summary>
+    /// Get Books App
+    /// </summary>
+    /// <returns>List Users</returns>
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(IReadOnlyList<Book>), StatusCodes.Status200OK)]
+    public async ValueTask<ListBooksResponse> GetAllAsync(CancellationToken cancellationToken)
+    {
+        return await _bookService.GetAllBooksAsync(new ListBooksRequest(), cancellationToken);
+    }
 
 
-        [HttpPost]
-        /// <summary>
-        /// Post Book App
-        /// </summary>
-        /// <returns>User created</returns>
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(Book), StatusCodes.Status200OK)]
-        public async Task<Book> CreateAsync([FromBody] Book book)
-        {
-            return await this._bookService.Create(book);
-        }
+    [HttpPost]
+    /// <summary>
+    /// Post Book App
+    /// </summary>
+    /// <returns>User created</returns>
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(Book), StatusCodes.Status200OK)]
+    public async ValueTask<CreateBookResponse> CreateAsync([FromBody] CreateBookRequest request, CancellationToken cancellationToken)
+    {
+        return await _bookService.CreateBookAsync(request, cancellationToken);
+    }
 
 
-        [HttpPut]
-        /// <summary>
-        /// Put Book App
-        /// </summary>
-        /// <returns>User created</returns>
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(Book), StatusCodes.Status200OK)]
-        public async Task<Book> UpdateAsync(Book book)
-        {
-            return await this._bookService.Edit(book);
-        }
+    [HttpPut]
+    /// <summary>
+    /// Put Book App
+    /// </summary>
+    /// <returns>User created</returns>
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(Book), StatusCodes.Status200OK)]
+    public async ValueTask<UpdateBookResponse> UpdateAsync(UpdateBookRequest request, CancellationToken cancellationToken)
+    {
+        return await _bookService.UpdateBookAsync(request, cancellationToken);
+    }
 
-        [HttpDelete("{Id}")]
-        /// <summary>
-        /// Delete Book App
-        /// </summary>
-        /// <returns>User created</returns>
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(Book), StatusCodes.Status200OK)]
-        public async Task<Book> DeleteAsync(Guid Id)
-        {
-            return await this._bookService.Delete(Id);
-        }
+    [HttpDelete("{Id}")]
+    /// <summary>
+    /// Delete Book App
+    /// </summary>
+    /// <returns>User created</returns>
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(Book), StatusCodes.Status200OK)]
+    public async ValueTask<DeleteBookResponse> DeleteAsync([FromRoute] DeleteBookRequest request, CancellationToken cancellationToken)
+    {
+        return await _bookService.DeleteBookAsync(request, cancellationToken);
     }
 }

@@ -1,13 +1,15 @@
-﻿namespace TravelBooks.Identity.Services;
+﻿using TravelBooks.Identity.Infraestructure;
 
-public class ApplicationUserService
+namespace TravelBooks.Identity.Services;
+
+public class ApplicationUserService : IApplicationUserService
 {
-    private readonly IAsyncRepository<ApplicationUser> _repository;
+    private readonly IdentityRepository _repository;
     private readonly IEncryptService _encryptService;
     private readonly ILogger<ApplicationUserService> _logger;
     private readonly ITokenService<ApplicationUser> _tokenService;
 
-    public ApplicationUserService(IAsyncRepository<ApplicationUser> repository,
+    public ApplicationUserService(IdentityRepository repository,
                                   IEncryptService encryptService,
                                   ILogger<ApplicationUserService> logger,
                                   ITokenService<ApplicationUser> tokenService)
@@ -18,38 +20,56 @@ public class ApplicationUserService
         _tokenService = tokenService ?? throw new ArgumentNullException(nameof(tokenService));
     }
 
-    public async Task<CreateUserApplicationResponse> CreateUserApplicationAsync(CreateUserApplicationRequest request, CancellationToken cancellationToken)
+    public async Task<CreateApplicationResponse> CreateUserApplicationAsync(CreateApplicationRequest request, CancellationToken cancellationToken)
     {
-        CreateUserApplicationResponse response = new(request.CorrelationId());
-        if (request.UserApplication is null) throw new ArgumentNullException(nameof(request.UserApplication));
-        request.UserApplication.UserName = request.UserApplication.UserName.ToLowerInvariant();
-        request.UserApplication.Password = await _encryptService.Encrypt(request.UserApplication.Password);
-        _logger.LogInformation($"Create user application {JsonSerializer.Serialize(request.UserApplication)}");
-        var created = await _repository.CreateAsync(request.UserApplication, cancellationToken);
-        response.UserApplicationCreated = created is not null;
+        CreateApplicationResponse response = new(request.Correlation);
+        if (request.ApplicationUser is null) throw new ArgumentNullException(nameof(request.ApplicationUser));
+        request.ApplicationUser.UserName = request.ApplicationUser.UserName.ToLowerInvariant();
+        request.ApplicationUser.Password = await _encryptService.Encrypt(request.ApplicationUser.Password);
+        _logger.LogInformation($"Create user application {JsonSerializer.Serialize(request.ApplicationUser)}");
+        response.ApplicationUserCreated = await _repository.CreateAsync(request.ApplicationUser, cancellationToken);
         return response;
     }
 
-    public async Task<DeleteUserApplicationResponse> DeleteUserApplicationAsync(DeleteUserApplicationRequest request, CancellationToken cancellationToken)
+    public async Task<UpdateApplicationUserResponse> UpdateUserApplicationAsync(UpdateApplicationUserRequest request, CancellationToken cancellationToken)
     {
-        DeleteUserApplicationResponse response = new(request.CorrelationId());
-        if (request.Id.Equals(Guid.Empty)) throw new ArgumentNullException(nameof(request.Id));
-        ApplicationUser userApplication = await _repository.FirstOrDefaultAsync(request.Id, cancellationToken);
-        response.UserApplicationDeleted = await _repository.DeleteAsync(userApplication, cancellationToken);
+        UpdateApplicationUserResponse response = new(request.Correlation);
+        if (request.ApplicationUser is null) throw new ArgumentNullException(nameof(request.ApplicationUser));
+        request.ApplicationUser.UserName = request.ApplicationUser.UserName.ToLowerInvariant();
+        request.ApplicationUser.Password = await _encryptService.Encrypt(request.ApplicationUser.Password);
+        _logger.LogInformation($"Update user application {JsonSerializer.Serialize(request.ApplicationUser)}");
+        response.ApplicationUserUpdated = await _repository.UpdateAsync(request.ApplicationUser, cancellationToken);
         return response;
     }
 
-    public async Task<GetAllUserApplicationResponse> GetAllUserApplicationsAsync(GetAllUserApplicationRequest request, CancellationToken cancellationToken)
+    public async Task<DeleteApplicationUserResponse> DeleteUserApplicationAsync(DeleteApplicationUserRequest request, CancellationToken cancellationToken)
     {
-        GetAllUserApplicationResponse response = new(request.CorrelationId());
+        DeleteApplicationUserResponse response = new(request.Correlation);
+        if (request.Id.Equals(Guid.Empty)) throw new ArgumentNullException(nameof(request));
+        ApplicationUser userApplication = await _repository.GetByIdAsync(request.Id, cancellationToken);
+        response.ApplicationUserDeleted = await _repository.DeleteAsync(userApplication, cancellationToken);
+        return response;
+    }
+
+    public async Task<ListApplicationUserResponse> GetAllUserApplicationsAsync(ListApplicationUserRequest request, CancellationToken cancellationToken)
+    {
+        ListApplicationUserResponse response = new(request.Correlation);
         _logger.LogInformation($"Get all user applications request");
-        response.UserApplications = await _repository.ListAsync(cancellationToken);
+        response.ApplicationUsers = await _repository.ListAsync(cancellationToken);
+        return response;
+    }
+
+    public async Task<GetApplicationUserByIdResponse> GetApplicationUserByIdAsync(GetApplicationUserByIdRequest request, CancellationToken cancellationToken)
+    {
+        GetApplicationUserByIdResponse response = new(request.Correlation);
+        _logger.LogInformation($"Get user application by id request");
+        response.ApplicationUserFound = await _repository.GetByIdAsync(request.Id, cancellationToken);
         return response;
     }
 
     public async Task<LoginUserApplicationResponse> LoginAsync(LoginUserApplicationRequest request, CancellationToken cancellationToken)
     {
-        LoginUserApplicationResponse response = new(request.CorrelationId());
+        LoginUserApplicationResponse response = new(request.Correlation);
         _logger.LogInformation($"Encrypt password and get user by login");
         request.Password = await _encryptService.Encrypt(request.Password);
         request.UserName = request.UserName.ToLowerInvariant();

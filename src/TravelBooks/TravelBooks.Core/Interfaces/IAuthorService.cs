@@ -1,15 +1,11 @@
-﻿using Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Core.Interfaces
+﻿namespace TravelBooks.Core.Interfaces
 {
     public interface IAuthorService
     {
-        Task<Author> Create(Author author);
-        Task<Author> Edit(Author author);
-        Task<Author> Delete(Guid Id);
-        Task<IEnumerable<Author>> GetAllAuthors();
+        ValueTask<CreateAuthorResponse> CreateAuthorAsync(CreateAuthorRequest request, CancellationToken cancellationToken);
+        ValueTask<DeleteAuthorResponse> DeleteAuthorAsync(DeleteAuthorRequest request, CancellationToken cancellationToken);
+        Task<ListAuthorResponse> GetAllAuthorsAsync(ListAuthorRequest request, CancellationToken cancellationToken);
+        Task<GetAuthorByIdResponse> GetAuthorByIdAsync(GetAuthorByIdRequest request, CancellationToken cancellationToken);
+        Task<UpdateAuthorResponse> UpdateAuthorAsync(UpdateAuthorRequest request, CancellationToken cancellationToken);
     }
 }

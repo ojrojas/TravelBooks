@@ -1,15 +1,10 @@
-﻿using Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Core.Interfaces
+﻿namespace TravelBooks.Core.Interfaces
 {
     public interface IEditorialService
     {
-        Task<Editorial> Create(Editorial editorial);
-        Task<Editorial> Edit(Editorial editorial);
-        Task<Editorial> Delete(Guid Id);
-        Task<IEnumerable<Editorial>> GetAllEditorials();
+        ValueTask<CreateEditorialResponse> CreateEditorialAsync(CreateEditorialRequest request, CancellationToken cancellationToken);
+        ValueTask<DeleteEditorialResponse> DeleteEditorialAsync(DeleteEditorialRequest request, CancellationToken cancellationToken);
+        ValueTask<ListEditorialResponse> GetAllEditorialsAsync(ListEditorialRequest request, CancellationToken cancellationToken);
+        ValueTask<UpdateEditorialResponse> UpdateEditorialAsync(UpdateEditorialRequest request, CancellationToken cancellationToken);
     }
 }

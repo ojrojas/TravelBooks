@@ -1,72 +1,63 @@
-﻿using Core.Entities;
-using Core.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿namespace TravelBooks.Api.Controllers;
 
-namespace Api.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class AuthorsController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AuthorsController : ControllerBase
+    private readonly IAuthorService _authorService;
+
+    public AuthorsController(IAuthorService authorService)
     {
-        private readonly IAuthorService _authorService;
+        _authorService = authorService;
+    }
 
-        public AuthorsController(IAuthorService authorService)
-        {
-            _authorService = authorService;
-        }
-
-        [HttpGet]
-        /// <summary>
-        /// Get Author App
-        /// </summary>
-        /// <returns>List Users</returns>
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(IReadOnlyList<Author>), StatusCodes.Status200OK)]
-        public async Task<IEnumerable<Author>> GetAllAsync()
-        {
-            return await this._authorService.GetAllAuthors();
-        }
+    [HttpGet]
+    /// <summary>
+    /// Get Author App
+    /// </summary>
+    /// <returns>List Users</returns>
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(IReadOnlyList<Author>), StatusCodes.Status200OK)]
+    public async ValueTask<ListAuthorResponse> GetAllAsync(CancellationToken cancellationToken)
+    {
+        return await _authorService.GetAllAuthorsAsync(new ListAuthorRequest(), cancellationToken);
+    }
 
 
-        [HttpPost]
-        /// <summary>
-        /// Post Editorial App
-        /// </summary>
-        /// <returns>User created</returns>
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(Author), StatusCodes.Status200OK)]
-        public async Task<Author> CreateAsync([FromBody] Author author)
-        {
-            return await this._authorService.Create(author);
-        }
+    [HttpPost]
+    /// <summary>
+    /// Post Editorial App
+    /// </summary>
+    /// <returns>User created</returns>
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(Author), StatusCodes.Status200OK)]
+    public async ValueTask<CreateAuthorResponse> CreateAsync([FromBody] CreateAuthorRequest request, CancellationToken cancellationToken)
+    {
+        return await _authorService.CreateAuthorAsync(request, cancellationToken);
+    }
 
 
-        [HttpPut]
-        /// <summary>
-        /// Put Author  App
-        /// </summary>
-        /// <returns>User created</returns>
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(Editorial), StatusCodes.Status200OK)]
-        public async Task<Author> UpdateAsync(Author author)
-        {
-            return await this._authorService.Edit(author);
-        }
+    [HttpPut]
+    /// <summary>
+    /// Put Author  App
+    /// </summary>
+    /// <returns>User created</returns>
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(Editorial), StatusCodes.Status200OK)]
+    public async ValueTask<UpdateAuthorResponse> UpdateAsync(UpdateAuthorRequest request, CancellationToken cancellationToken)
+    {
+        return await _authorService.UpdateAuthorAsync(request, cancellationToken);
+    }
 
-        [HttpDelete("{Id}")]
-        /// <summary>
-        /// Delete author App
-        /// </summary>
-        /// <returns>User created</returns>
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(Editorial), StatusCodes.Status200OK)]
-        public async Task<Author> DeleteAsync(Guid Id)
-        {
-            return await this._authorService.Delete(Id);
-        }
+    [HttpDelete("{Id}")]
+    /// <summary>
+    /// Delete author App
+    /// </summary>
+    /// <returns>User created</returns>
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(Editorial), StatusCodes.Status200OK)]
+    public async ValueTask<DeleteAuthorResponse> DeleteAsync([FromRoute]DeleteAuthorRequest request, CancellationToken cancellationToken)
+    {
+        return await _authorService.DeleteAuthorAsync(request, cancellationToken);
     }
 }

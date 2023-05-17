@@ -1,4 +1,4 @@
-namespace Core.Constants
+namespace TravelBooks.Core.Constants
 {
     public class AuthorizationConstants
     {

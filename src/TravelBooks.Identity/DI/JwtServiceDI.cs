@@ -4,7 +4,7 @@ public static class JwtServiceDI
 {
 	public static IServiceCollection AddJwtServiceDI(this IServiceCollection services, IConfiguration configuration)
 	{
-        var key = Encoding.ASCII.GetBytes(configuration["JwtOptions:SecretKey"]);
+        var key = Encoding.ASCII.GetBytes(configuration["Jwt:SecretPhrase"]);
         services.AddAuthentication(config =>
         {
             config.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;

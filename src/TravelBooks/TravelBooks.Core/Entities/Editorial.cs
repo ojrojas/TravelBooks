@@ -1,8 +1,4 @@
-﻿using Core.Interfaces;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace Core.Entities
+﻿namespace TravelBooks.Core.Entities
 {
     /// <summary>
     /// Model Editoral 

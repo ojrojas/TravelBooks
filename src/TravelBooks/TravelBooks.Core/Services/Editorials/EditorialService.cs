@@ -1,39 +1,50 @@
-﻿using Core.Entities;
-using Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿namespace TravelBooks.Core.Services;
 
-namespace Core.Services.Editorials
+public class EditorialService : IEditorialService
 {
-    public class EditorialService: IEditorialService
+    private readonly EditorialRepository _repository;
+    private readonly ILogger<EditorialService> _logger;
+
+    public EditorialService(EditorialRepository repository, ILogger<EditorialService> logger)
     {
-        private readonly IAsyncRepository<Editorial> asyncRepository;
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    }
 
-        public EditorialService(IAsyncRepository<Editorial> asyncRepository)
-        {
-            this.asyncRepository = asyncRepository;
-        }
+    public async ValueTask<CreateEditorialResponse> CreateEditorialAsync(CreateEditorialRequest request, CancellationToken cancellationToken)
+    {
+        CreateEditorialResponse response = new(request.Correlation);
+        if (request.Editorial is null) throw new ArgumentNullException(nameof(request));
+        _logger.LogInformation($"Create author {JsonSerializer.Serialize(request.Editorial)}");
+        response.EditorialCreated = await _repository.CreateAsync(request.Editorial, cancellationToken);
+        return response;
+    }
 
-        public async Task<Editorial> Create(Editorial editorial)
-        {
-            return await this.asyncRepository.CreateAsync(editorial);
-        }
+    public async ValueTask<DeleteEditorialResponse> DeleteEditorialAsync(DeleteEditorialRequest request, CancellationToken cancellationToken)
+    {
+        DeleteEditorialResponse response = new(request.Correlation);
+        if (request.Id.Equals(Guid.Empty)) throw new ArgumentNullException(nameof(request));
+        _logger.LogInformation($"Create author {JsonSerializer.Serialize(request.Id)}");
+        var author = await _repository.GetByIdAsync(request.Id, cancellationToken);
+        response.EditorialDeleted = await _repository.DeleteAsync(author, cancellationToken);
+        return response;
+    }
 
-        public async Task<Editorial> Delete(Guid Id)
-        {
-            var editorial = await this.asyncRepository.GetByIdAsync(Id);
-            return await this.asyncRepository.DeleteAsync(editorial, editorial.Id);
-        }
+    public async ValueTask<UpdateEditorialResponse> UpdateEditorialAsync(UpdateEditorialRequest request, CancellationToken cancellationToken)
+    {
+        UpdateEditorialResponse response = new(request.Correlation);
+        if (request.Editorial is null) throw new ArgumentNullException(nameof(request));
+        _logger.LogInformation($"Create author {JsonSerializer.Serialize(request.Editorial)}");
+        response.EditorialUpdated = await _repository.UpdateAsync(request.Editorial, cancellationToken);
+        return response;
+    }
 
-        public async Task<Editorial> Edit(Editorial editorial)
-        {
-            return await this.asyncRepository.UpdateAsync(editorial);
-        }
-
-        public async Task<IEnumerable<Editorial>> GetAllEditorials()
-        {
-            return await this.asyncRepository.GetAllAsync();
-        }
+    public async ValueTask<ListEditorialResponse> GetAllEditorialsAsync(ListEditorialRequest request, CancellationToken cancellationToken)
+    {
+        ListEditorialResponse response = new(request.Correlation);
+        if (request is null) throw new ArgumentNullException(nameof(request));
+        _logger.LogInformation($"Create author {JsonSerializer.Serialize(request)}");
+        response.Editorials = await _repository.ListAsync(cancellationToken);
+        return response;
     }
 }
