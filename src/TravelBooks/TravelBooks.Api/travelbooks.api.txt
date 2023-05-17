@@ -941,3 +941,96 @@ VALUES ('20230517050228_inital', '7.0.5');
 2023-05-17 00:02:56.145 -05:00 [DBG] 'TravelBooksDbContext' disposed.
 2023-05-17 00:02:56.146 -05:00 [DBG] Disposing connection to database 'main' on server 'travel.db'.
 2023-05-17 00:02:56.146 -05:00 [DBG] Disposed connection to database 'main' on server 'travel.db' (0ms).
+2023-05-17 06:38:11.898 -05:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2023-05-17 06:38:11.952 -05:00 [DBG] Hosting starting
+2023-05-17 06:38:11.965 -05:00 [INF] User profile is available. Using '/Users/oscarrojas/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2023-05-17 06:38:11.968 -05:00 [DBG] Reading data from file '/Users/oscarrojas/.aspnet/DataProtection-Keys/key-bf4216ab-702e-49b9-8f31-f59cf3e6f04d.xml'.
+2023-05-17 06:38:11.971 -05:00 [DBG] Reading data from file '/Users/oscarrojas/.aspnet/DataProtection-Keys/key-fe04fb26-9613-4157-a19e-c2251c7ec9c0.xml'.
+2023-05-17 06:38:11.973 -05:00 [DBG] Found key {bf4216ab-702e-49b9-8f31-f59cf3e6f04d}.
+2023-05-17 06:38:11.974 -05:00 [DBG] Found key {fe04fb26-9613-4157-a19e-c2251c7ec9c0}.
+2023-05-17 06:38:11.976 -05:00 [DBG] Considering key {bf4216ab-702e-49b9-8f31-f59cf3e6f04d} with expiration date 2023-05-24 03:01:57Z as default key.
+2023-05-17 06:38:11.977 -05:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2023-05-17 06:38:11.980 -05:00 [DBG] Using managed symmetric algorithm 'System.Security.Cryptography.Aes'.
+2023-05-17 06:38:11.980 -05:00 [DBG] Using managed keyed hash algorithm 'System.Security.Cryptography.HMACSHA256'.
+2023-05-17 06:38:11.981 -05:00 [DBG] Using key {bf4216ab-702e-49b9-8f31-f59cf3e6f04d} as the default key.
+2023-05-17 06:38:11.982 -05:00 [DBG] Key ring with default key {bf4216ab-702e-49b9-8f31-f59cf3e6f04d} was loaded during application startup.
+2023-05-17 06:38:12.188 -05:00 [INF] Now listening on: https://localhost:7087
+2023-05-17 06:38:12.188 -05:00 [INF] Now listening on: http://localhost:5268
+2023-05-17 06:38:12.189 -05:00 [DBG] Loaded hosting startup assembly TravelBooks.Api
+2023-05-17 06:38:12.189 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-17 06:38:12.189 -05:00 [INF] Hosting environment: Development
+2023-05-17 06:38:12.189 -05:00 [INF] Content root path: /Users/oscarrojas/Sources/GitHub/TravelBooks/src/TravelBooks/TravelBooks.Api
+2023-05-17 06:38:12.189 -05:00 [DBG] Hosting started
+2023-05-17 06:38:12.198 -05:00 [DBG] Connection id "0HMQMPCP1KFVR" accepted.
+2023-05-17 06:38:12.199 -05:00 [DBG] Connection id "0HMQMPCP1KFVR" started.
+2023-05-17 06:38:13.202 -05:00 [DBG] Connection id "0HMQMPCP1KFVR" received FIN.
+2023-05-17 06:38:13.210 -05:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException:  Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveBlobAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2023-05-17 06:38:13.235 -05:00 [DBG] Connection id "0HMQMPCP1KFVR" stopped.
+2023-05-17 06:38:13.238 -05:00 [DBG] Connection id "0HMQMPCP1KFVR" sending FIN because: "The Socket transport's send loop completed gracefully."
+2023-05-17 06:38:14.281 -05:00 [DBG] Connection id "0HMQMPCP1KFVS" accepted.
+2023-05-17 06:38:14.282 -05:00 [DBG] Connection id "0HMQMPCP1KFVS" started.
+2023-05-17 06:38:14.324 -05:00 [DBG] Connection 0HMQMPCP1KFVS established using the following protocol: "Tls12"
+2023-05-17 06:38:14.382 -05:00 [DBG] Connection id "0HMQMPCP1KFVS" received FIN.
+2023-05-17 06:38:14.385 -05:00 [DBG] Connection id "0HMQMPCP1KFVS" sending FIN because: "The client closed the connection."
+2023-05-17 06:38:14.386 -05:00 [DBG] Connection id "0HMQMPCP1KFVS" disconnecting.
+2023-05-17 06:38:14.402 -05:00 [DBG] Connection id "0HMQMPCP1KFVT" accepted.
+2023-05-17 06:38:14.402 -05:00 [DBG] Connection id "0HMQMPCP1KFVT" started.
+2023-05-17 06:38:14.412 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7087/swagger - -
+2023-05-17 06:38:14.412 -05:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2023-05-17 06:38:14.412 -05:00 [VRB] All hosts are allowed.
+2023-05-17 06:38:14.424 -05:00 [DBG] No candidates found for the request path '/swagger'
+2023-05-17 06:38:14.424 -05:00 [DBG] Request did not match any endpoints
+2023-05-17 06:38:14.454 -05:00 [DBG] Connection 0HMQMPCP1KFVT established using the following protocol: "Tls12"
+2023-05-17 06:38:14.506 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7087/swagger/index.html - -
+2023-05-17 06:38:14.506 -05:00 [VRB] All hosts are allowed.
+2023-05-17 06:38:14.507 -05:00 [DBG] No candidates found for the request path '/swagger/index.html'
+2023-05-17 06:38:14.507 -05:00 [DBG] Request did not match any endpoints
+2023-05-17 06:38:14.519 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7087/swagger - - - 0 - - 108.3439ms
+2023-05-17 06:38:14.521 -05:00 [DBG] Connection id "0HMQMPCP1KFVS" stopped.
+2023-05-17 06:38:14.557 -05:00 [DBG] Connection id "0HMQMPCP1KFVT" completed keep alive response.
+2023-05-17 06:38:14.557 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7087/swagger/index.html - - - 200 - text/html;charset=utf-8 50.7965ms
+2023-05-17 06:38:14.681 -05:00 [DBG] Connection id "0HMQMPCP1KFVT" received FIN.
+2023-05-17 06:38:14.682 -05:00 [DBG] Connection id "0HMQMPCP1KFVT" sending FIN because: "The client closed the connection."
+2023-05-17 06:38:14.682 -05:00 [DBG] Connection id "0HMQMPCP1KFVT" disconnecting.
+2023-05-17 06:38:14.682 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7087/swagger/favicon-16x16.png - -
+2023-05-17 06:38:14.682 -05:00 [VRB] All hosts are allowed.
+2023-05-17 06:38:14.683 -05:00 [DBG] No candidates found for the request path '/swagger/favicon-16x16.png'
+2023-05-17 06:38:14.683 -05:00 [DBG] Request did not match any endpoints
+2023-05-17 06:38:14.685 -05:00 [VRB] Range header's value is empty.
+2023-05-17 06:38:14.686 -05:00 [DBG] The file transmission was cancelled
+System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at System.Threading.CancellationToken.ThrowIfCancellationRequested()
+   at Microsoft.AspNetCore.Http.SendFileResponseExtensions.SendFileAsyncCore(HttpResponse response, IFileInfo file, Int64 offset, Nullable`1 count, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.SendFileResponseExtensions.SendFileAsyncCore(HttpResponse response, IFileInfo file, Int64 offset, Nullable`1 count, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileContext.SendAsync()
+2023-05-17 06:38:14.687 -05:00 [INF] Sending file. Request path: '/favicon-16x16.png'. Physical path: 'N/A'
+2023-05-17 06:38:14.687 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7087/swagger/favicon-16x16.png - - - 0 665 image/png 4.4940ms
+2023-05-17 06:38:14.687 -05:00 [DBG] Connection id "0HMQMPCP1KFVT" stopped.
+2023-05-17 06:38:14.695 -05:00 [DBG] Connection id "0HMQMPCP1KFVU" accepted.
+2023-05-17 06:38:14.695 -05:00 [DBG] Connection id "0HMQMPCP1KFVU" started.
+2023-05-17 06:38:14.721 -05:00 [DBG] Connection id "0HMQMPCP1KFVV" accepted.
+2023-05-17 06:38:14.746 -05:00 [DBG] Connection id "0HMQMPCP1KFVV" started.
+2023-05-17 06:38:14.746 -05:00 [DBG] Connection id "0HMQMPCP1KG00" accepted.
+2023-05-17 06:38:14.746 -05:00 [DBG] Connection id "0HMQMPCP1KG00" started.
+2023-05-17 06:38:14.772 -05:00 [DBG] Connection 0HMQMPCP1KFVV established using the following protocol: "Tls12"
+2023-05-17 06:38:14.777 -05:00 [DBG] Connection 0HMQMPCP1KG00 established using the following protocol: "Tls12"
+2023-05-17 06:38:14.780 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7087/swagger/v1/swagger.json - -
+2023-05-17 06:38:14.780 -05:00 [VRB] All hosts are allowed.
+2023-05-17 06:38:14.780 -05:00 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2023-05-17 06:38:14.780 -05:00 [DBG] Request did not match any endpoints
+2023-05-17 06:38:14.783 -05:00 [DBG] Connection 0HMQMPCP1KFVU established using the following protocol: "Tls12"
+2023-05-17 06:38:14.824 -05:00 [DBG] Connection id "0HMQMPCP1KG00" completed keep alive response.
+2023-05-17 06:38:14.824 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7087/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 43.9661ms
+2023-05-17 06:38:20.335 -05:00 [DBG] Connection id "0HMQMPCP1KFVV" disconnecting.
+2023-05-17 06:38:20.335 -05:00 [DBG] Connection id "0HMQMPCP1KFVV" received FIN.
+2023-05-17 06:38:20.336 -05:00 [DBG] Connection id "0HMQMPCP1KFVV" stopped.
+2023-05-17 06:38:20.335 -05:00 [DBG] Connection id "0HMQMPCP1KFVU" received FIN.
+2023-05-17 06:38:20.335 -05:00 [DBG] Connection id "0HMQMPCP1KFVU" disconnecting.
+2023-05-17 06:38:20.336 -05:00 [DBG] Connection id "0HMQMPCP1KFVV" sending FIN because: "The Socket transport's send loop completed gracefully."
+2023-05-17 06:38:20.336 -05:00 [DBG] Connection id "0HMQMPCP1KFVU" sending FIN because: "The client closed the connection."
+2023-05-17 06:38:20.337 -05:00 [DBG] Connection id "0HMQMPCP1KFVU" stopped.

@@ -12,4 +12,5 @@ global using TravelBooks.Core.Interfaces;
 global using TravelBooks.Core.Repositories;
 global using TravelBooks.Infraestructure.Data;
 global using TravelBooks.Infraestructure.Interfaces;
+global using TravelBooks.Core.Contexts;
 

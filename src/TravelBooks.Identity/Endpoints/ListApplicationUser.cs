@@ -17,9 +17,9 @@ public class ListApplicationUser: ControllerBase
       Description = "Get list applicationuser",
       OperationId = "applicationuser.getlistapplicationusers",
       Tags = new[] { "ApplicationUserEndpoint" })]
-    public async ValueTask<ListApplicationUserResponse> ListUserApplication(ListApplicationUserRequest request, CancellationToken cancellationToken)
+    public async ValueTask<ListApplicationUserResponse> ListUserApplication(CancellationToken cancellationToken)
     {
-        return await _service.GetAllUserApplicationsAsync(request, cancellationToken);
+        return await _service.GetAllUserApplicationsAsync(new ListApplicationUserRequest(), cancellationToken);
     }
 }
 

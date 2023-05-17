@@ -30,24 +30,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Entities\" />
-    <None Remove="Specifications\" />
-    <None Remove="DI\" />
-    <None Remove="Configuration\" />
-    <None Remove="Services\" />
-    <None Remove="Dtos\" />
-    <None Remove="Endpoints\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Specifications\" />
-    <Folder Include="DI\" />
-    <Folder Include="Configuration\" />
-    <Folder Include="Services\" />
-    <Folder Include="Dtos\" />
-    <Folder Include="Endpoints\" />
-  </ItemGroup>
+ 
   <ItemGroup>
     <ProjectReference Include="..\TravelBooks.Infraestructure\TravelBooks.Infraestructure.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>

@@ -12,16 +12,29 @@ builder.Services.AddContextApplicationDI(configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerServiceDI();
 builder.Services.AddJwtServiceDI(configuration);
-builder.Services.AddServiceApplicationDI(configuration);
 builder.Services.AddOptionServiceDI(configuration);
+builder.Services.AddServiceApplicationDI();
 
 builder.Services.AddHealthChecks();
+
+builder.Services.AddTransient(sp =>
+{
+    var logger = sp.GetService<ILogger<InitializerDatabase>>();
+    var contextdb = sp.GetService<TravelBooksIdentityContext>();
+    var encrypt = sp.GetService<IEncryptService>();
+    return ActivatorUtilities.CreateInstance<InitializerDatabase>(sp, contextdb!, logger!);
+});
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+
+    using var scope = app.Services.CreateScope();
+    var service = scope.ServiceProvider;
+    var initializer = service.GetRequiredService<InitializerDatabase>();
+    await initializer.Run(default);
     app.UseSwagger();
     app.UseSwaggerUI();
 }

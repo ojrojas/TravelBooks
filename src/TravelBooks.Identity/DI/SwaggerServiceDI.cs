@@ -6,7 +6,7 @@ public static class SwaggerServiceDI
     {
         services.AddSwaggerGen(c =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "MillonAndUp", Version = "v1" });
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "TravelBooks.Identity", Version = "v1" });
             c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
             {
                 Name = "Authorization",

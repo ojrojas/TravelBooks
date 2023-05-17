@@ -2,7 +2,7 @@
 
 public class AuthorRepository : AsyncRepository<Author>
 {
-    public AuthorRepository(ILogger<AsyncRepository<Author>> logger, DbContext context) : base(logger, context)
+    public AuthorRepository(ILogger<AsyncRepository<Author>> logger, TravelBooksDbContext context) : base(logger, context)
     {
     }
 }

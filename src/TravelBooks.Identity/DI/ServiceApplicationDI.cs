@@ -2,12 +2,12 @@
 
 public static class ServiceApplicationDI
 {
-	public static IServiceCollection AddServiceApplicationDI(this IServiceCollection services, IConfiguration configuration)
+	public static IServiceCollection AddServiceApplicationDI(this IServiceCollection services)
 	{
 		services.AddTransient(typeof(IdentityRepository));
-		services.AddTransient<IApplicationUserService, ApplicationUserService>();
-		services.AddTransient<IEncryptService, EncryptService>();
 		services.AddTransient(typeof(ITokenService<>), typeof(TokenService<>));
+		services.AddTransient<IEncryptService, EncryptService>();
+		services.AddTransient<IApplicationUserService, ApplicationUserService>();
 		return services;
 	}
 }

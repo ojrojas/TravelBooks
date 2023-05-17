@@ -2,7 +2,7 @@
 
 public class BookRepository : AsyncRepository<Book>
 {
-    public BookRepository(ILogger<AsyncRepository<Book>> logger, DbContext context) : base(logger, context)
+    public BookRepository(ILogger<AsyncRepository<Book>> logger, TravelBooksDbContext context) : base(logger, context)
     {
     }
 }
