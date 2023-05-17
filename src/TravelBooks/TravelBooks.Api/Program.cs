@@ -1,6 +1,3 @@
-using HealthChecks.UI.Client;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -17,7 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerAuthentication();
 builder.Services.AddJwtServices(configuration);
 builder.Services.AddServiceInjection();
-builder.Services.AddJwtServices(configuration);
+builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
@@ -55,6 +52,6 @@ static Serilog.ILogger CreateSerilogLogger() => new LoggerConfiguration()
         .Enrich.WithProperty("ApplicationContext", typeof(Program).Namespace)
         .Enrich.FromLogContext()
         .WriteTo.Console()
-        .WriteTo.File("identitylogger.txt",
+        .WriteTo.File("travelbooks.api.txt",
         outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}")
         .CreateLogger();

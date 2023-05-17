@@ -18,4 +18,6 @@ global using TravelBooks.Core.Repositories;
 global using TravelBooks.Core.Services;
 global using Serilog;
 global using TravelBooks.Api.InjectionDependencies;
+global using HealthChecks.UI.Client;
+global using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 

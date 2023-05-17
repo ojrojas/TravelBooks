@@ -1,14 +1,14 @@
-
-
 namespace TravelBooks.Api.InjectionDependencies;
 
 public static class AddServices
 {
-
     public static IServiceCollection AddServiceDbContextInjection(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<TravelBooksDbContext>(c =>
-            c.UseSqlite(configuration.GetConnectionString(configuration.GetConnectionString("travelconnection"))));
+        {
+            c.UseSqlite(configuration.GetConnectionString("travelconnection"));
+            c.EnableSensitiveDataLogging();
+        });
         return services;
     }
 
@@ -18,9 +18,9 @@ public static class AddServices
         services.AddTransient(typeof(EditorialRepository));
         services.AddTransient(typeof(AuthorRepository));
         services.AddTransient(typeof(BookRepository));
-        services.AddScoped<IAuthorService, AuthorService>();
-        services.AddScoped<IBookService, BookService>();
-        services.AddScoped<IEditorialService, EditorialService>();
+        services.AddTransient<IAuthorService, AuthorService>();
+        services.AddTransient<IBookService, BookService>();
+        services.AddTransient<IEditorialService, EditorialService>();
 
 
         return services;
@@ -28,7 +28,7 @@ public static class AddServices
 
     public static IServiceCollection AddJwtServices(this IServiceCollection services, IConfiguration configuration)
     {
-        var key = Encoding.ASCII.GetBytes(configuration["JwtOptions:SecretKey"]);
+        var key = Encoding.ASCII.GetBytes(configuration["Jwt:SecretPhrase"]);
         services.AddAuthentication(config =>
         {
             config.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -53,7 +53,7 @@ public static class AddServices
     {
         services.AddSwaggerGen(c =>
       {
-          c.SwaggerDoc("v1", new OpenApiInfo { Title = "MillonAndUp", Version = "v1" });
+          c.SwaggerDoc("v1", new OpenApiInfo { Title = "TravelBooks", Version = "v1" });
           c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
           {
               Name = "Authorization",
