@@ -1,12 +1,11 @@
-﻿using System;
-namespace TravelBooks.Core.Dtos;
+﻿namespace TravelBooks.Core.Dtos;
 
-public record UpdateEditorialResponse: BaseResponse
+public record UpdateEditorialResponse : BaseResponse
 {
-	public UpdateEditorialResponse(Guid correlation): base(correlation)
-	{
-	}
+    public UpdateEditorialResponse(Guid correlation) : base(correlation)
+    {
+    }
 
-	public Editorial EditorialUpdated { get; set; } = null!;
+    public Editorial EditorialUpdated { get; set; } = null!;
 }
 

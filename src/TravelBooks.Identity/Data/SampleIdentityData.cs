@@ -1,5 +1,8 @@
 ﻿namespace TravelBooks.Identity.Data;
 
+/// <summary>
+/// Sample data test environment
+/// </summary>
 public class SampleIdentityData
 {
     public ApplicationUser GetUserApplication()

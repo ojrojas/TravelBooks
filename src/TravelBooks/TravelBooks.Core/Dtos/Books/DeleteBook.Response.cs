@@ -1,12 +1,11 @@
-﻿using System;
-namespace TravelBooks.Core.Dtos;
+﻿namespace TravelBooks.Core.Dtos;
 
-public record DeleteBookResponse: BaseResponse
+public record DeleteBookResponse : BaseResponse
 {
-	public DeleteBookResponse(Guid correlation): base(correlation)
-	{
-	}
+    public DeleteBookResponse(Guid correlation) : base(correlation)
+    {
+    }
 
-	public Book BookDeleted { get; set; } = null!;
+    public Book BookDeleted { get; set; } = null!;
 }
 

@@ -1,7 +1,6 @@
-﻿using System;
-namespace TravelBooks.Core.Dtos;
+﻿namespace TravelBooks.Core.Dtos;
 
-public record UpdateEditorialRequest: BaseRequest
+public record UpdateEditorialRequest : BaseRequest
 {
     public Editorial Editorial { get; set; } = null!;
 }

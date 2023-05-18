@@ -1,5 +1,6 @@
 ﻿namespace TravelBooks.Identity.Endpoints;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class GetApplicationUserById : ControllerBase

@@ -1,6 +1,4 @@
-﻿using TravelBooks.Identity.Infraestructure;
-
-namespace TravelBooks.Identity.Services;
+﻿namespace TravelBooks.Identity.Services;
 
 public class ApplicationUserService : IApplicationUserService
 {

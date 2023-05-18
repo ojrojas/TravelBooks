@@ -1,6 +1,6 @@
 ﻿namespace TravelBooks.Core.Dtos;
 
-public record ListEditorialRequest: BaseRequest
+public record ListEditorialRequest : BaseRequest
 {
 }
 

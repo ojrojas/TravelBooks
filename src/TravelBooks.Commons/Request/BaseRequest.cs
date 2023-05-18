@@ -1,7 +1,7 @@
 ﻿namespace TravelBooks.Commons.Request;
 
-public record BaseRequest: BaseMessage
+public record BaseRequest : BaseMessage
 {
-	
+
 }
 

@@ -15,7 +15,7 @@ public class AuthorService : IAuthorService
     {
         CreateAuthorResponse response = new(request.Correlation);
         if (request.Author is null) throw new ArgumentNullException(nameof(request));
-        _logger.LogInformation($"Create author {JsonSerializer.Serialize(request.Author)}");
+        _logger.LogInformation($"Create author {(request.Author)}");
         response.AuthorCreated = await _repository.CreateAsync(request.Author, cancellationToken);
         return response;
     }
@@ -24,7 +24,7 @@ public class AuthorService : IAuthorService
     {
         DeleteAuthorResponse response = new(request.Correlation);
         if (request.Id.Equals(Guid.Empty)) throw new ArgumentNullException(nameof(request));
-        _logger.LogInformation($"Create author {JsonSerializer.Serialize(request.Id)}");
+        _logger.LogInformation($"Create author {(request.Id)}");
         var author = await _repository.GetByIdAsync(request.Id, cancellationToken);
         response.AuthorDeleted = await _repository.DeleteAsync(author, cancellationToken);
         return response;
@@ -34,7 +34,7 @@ public class AuthorService : IAuthorService
     {
         UpdateAuthorResponse response = new(request.Correlation);
         if (request.Author is null) throw new ArgumentNullException(nameof(request));
-        _logger.LogInformation($"Create author {JsonSerializer.Serialize(request.Author)}");
+        _logger.LogInformation($"Create author {(request.Author)}");
         response.AuthorUpdated = await _repository.UpdateAsync(request.Author, cancellationToken);
         return response;
     }
@@ -43,7 +43,7 @@ public class AuthorService : IAuthorService
     {
         ListAuthorResponse response = new(request.Correlation);
         if (request is null) throw new ArgumentNullException(nameof(request));
-        _logger.LogInformation($"Create author {JsonSerializer.Serialize(request)}");
+        _logger.LogInformation($"Create author {(request)}");
         response.Authors = await _repository.ListAsync(cancellationToken);
         return response;
     }
@@ -52,7 +52,7 @@ public class AuthorService : IAuthorService
     {
         GetAuthorByIdResponse response = new(request.Correlation);
         if (request is null) throw new ArgumentNullException(nameof(request));
-        _logger.LogInformation($"Create author {JsonSerializer.Serialize(request)}");
+        _logger.LogInformation($"Create author {(request)}");
         response.AuthorFound = await _repository.GetByIdAsync(request.Id, cancellationToken);
         return response;
     }

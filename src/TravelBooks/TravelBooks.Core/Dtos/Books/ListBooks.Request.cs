@@ -1,7 +1,6 @@
-﻿using System;
-namespace TravelBooks.Core.Dtos;
+﻿namespace TravelBooks.Core.Dtos;
 
-public record ListBooksRequest: BaseRequest
+public record ListBooksRequest : BaseRequest
 {
 }
 

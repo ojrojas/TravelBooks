@@ -1,5 +1,6 @@
 ﻿namespace TravelBooks.Identity.Endpoints;
 
+
 [ApiController]
 [Route("api/[controller]")]
 public class LoginApplicationUser : ControllerBase

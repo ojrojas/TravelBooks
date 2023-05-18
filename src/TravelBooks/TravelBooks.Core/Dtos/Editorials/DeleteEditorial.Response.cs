@@ -1,5 +1,4 @@
-﻿using System;
-namespace TravelBooks.Core.Dtos;
+﻿namespace TravelBooks.Core.Dtos;
 public record DeleteEditorialResponse : BaseResponse
 {
     public DeleteEditorialResponse(Guid correlation) : base(correlation)

@@ -1,7 +1,6 @@
-﻿using System;
-namespace TravelBooks.Core.Dtos;
+﻿namespace TravelBooks.Core.Dtos;
 
-public record DeleteBookRequest: BaseRequest
+public record DeleteBookRequest : BaseRequest
 {
     public Guid Id { get; set; }
 }

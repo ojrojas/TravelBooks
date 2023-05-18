@@ -1,5 +1,6 @@
 ﻿namespace TravelBooks.Api.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class AuthorsController : ControllerBase
@@ -56,7 +57,7 @@ public class AuthorsController : ControllerBase
     /// <returns>User created</returns>
     [Produces("application/json")]
     [ProducesResponseType(typeof(Editorial), StatusCodes.Status200OK)]
-    public async ValueTask<DeleteAuthorResponse> DeleteAsync([FromRoute]DeleteAuthorRequest request, CancellationToken cancellationToken)
+    public async ValueTask<DeleteAuthorResponse> DeleteAsync([FromRoute] DeleteAuthorRequest request, CancellationToken cancellationToken)
     {
         return await _authorService.DeleteAuthorAsync(request, cancellationToken);
     }

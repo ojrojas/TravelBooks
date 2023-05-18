@@ -1,8 +1,9 @@
 ﻿namespace TravelBooks.Identity.Endpoints;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
-public class CreateApplicationUser: ControllerBase
+public class CreateApplicationUser : ControllerBase
 {
     private readonly IApplicationUserService _service;
 
@@ -19,7 +20,7 @@ public class CreateApplicationUser: ControllerBase
       Description = "Create applicationuser",
       OperationId = "applicationuser.createapplicationuser",
       Tags = new[] { "ApplicationUserEndpoint" })]
-    public async ValueTask<CreateApplicationResponse>  Handle(CreateApplicationRequest request, CancellationToken cancellationToken)
+    public async ValueTask<CreateApplicationResponse> Handle(CreateApplicationRequest request, CancellationToken cancellationToken)
     {
         return await _service.CreateUserApplicationAsync(request, cancellationToken);
     }

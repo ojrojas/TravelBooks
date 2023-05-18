@@ -3,10 +3,12 @@
     /// <summary>
     /// Model Book
     /// </summary>
-    public class Book: BaseEntity, IAggregateRoot
+    public class Book : IAggregateRoot
     {
+        [Key]
+        public int ISBN { get; set; }
         [StringLength(45)]
-        public string Titulo { get; set; }
+        public string Title { get; set; }
         public string Sipnosis { get; set; }
         public int Pages { get; set; }
         public Guid EditorialId { get; set; }

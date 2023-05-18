@@ -1,7 +1,6 @@
-﻿using System;
-namespace TravelBooks.Core.Dtos;
+﻿namespace TravelBooks.Core.Dtos;
 
-public record UpdateBookRequest: BaseRequest
+public record UpdateBookRequest : BaseRequest
 {
     public Book Book { get; set; } = null!;
 }

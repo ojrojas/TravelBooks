@@ -1,12 +1,11 @@
-﻿using System;
-namespace TravelBooks.Identity.Dtos;
+﻿namespace TravelBooks.Identity.Dtos;
 
-public record ListApplicationUserResponse: BaseResponse
+public record ListApplicationUserResponse : BaseResponse
 {
-	public ListApplicationUserResponse(Guid correlation): base(correlation)
-	{
-	}
+    public ListApplicationUserResponse(Guid correlation) : base(correlation)
+    {
+    }
 
-	public IEnumerable<ApplicationUser> ApplicationUsers { get; set; }
+    public IEnumerable<ApplicationUser> ApplicationUsers { get; set; }
 }
 

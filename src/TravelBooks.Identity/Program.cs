@@ -57,7 +57,7 @@ app.MapHealthChecks("/liveness",
     new HealthCheckOptions
     {
         Predicate = response => response.Name.Contains("selft")
-    });                                  
+    });
 
 
 app.Run();

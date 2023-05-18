@@ -1,5 +1,8 @@
 ﻿namespace TravelBooks.Identity.Data;
 
+/// <summary>
+/// Intialize data test environment
+/// </summary>
 public class InitializerDatabase
 {
     private readonly TravelBooksIdentityContext _context;

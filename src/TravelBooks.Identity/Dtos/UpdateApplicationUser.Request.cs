@@ -1,7 +1,7 @@
 ﻿namespace TravelBooks.Identity.Dtos;
 
-public record UpdateApplicationUserRequest: BaseRequest
+public record UpdateApplicationUserRequest : BaseRequest
 {
-	public ApplicationUser ApplicationUser { get; set; }
+    public ApplicationUser ApplicationUser { get; set; }
 }
 

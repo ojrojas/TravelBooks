@@ -1,7 +1,7 @@
 ﻿namespace TravelBooks.Commons.Request;
 
-public record BaseResponse: BaseMessage
+public record BaseResponse : BaseMessage
 {
-	public BaseResponse(Guid correlation) : base() => _correlation = correlation;
+    public BaseResponse(Guid correlation) : base() => _correlation = correlation;
 }
 

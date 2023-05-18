@@ -1,11 +1,11 @@
 ﻿namespace TravelBooks.Core.Dtos;
 
-public record UpdateBookResponse: BaseResponse
+public record UpdateBookResponse : BaseResponse
 {
-	public UpdateBookResponse(Guid correlation) :base(correlation)
-	{
-	}
+    public UpdateBookResponse(Guid correlation) : base(correlation)
+    {
+    }
 
-	public Book BookUpdated { get; set; } = null!;
+    public Book BookUpdated { get; set; } = null!;
 }
 

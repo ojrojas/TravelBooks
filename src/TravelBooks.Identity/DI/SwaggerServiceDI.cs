@@ -1,7 +1,16 @@
 ﻿namespace TravelBooks.Identity.DI;
 
+/// <summary>
+/// Swagger injection helper
+/// </summary>
 public static class SwaggerServiceDI
 {
+    /// <summary>
+    /// Add swagger configuration application
+    /// </summary>
+    /// <param name="services">Service collection application</param>
+    /// <param name="configuration">Configuration application</param>
+    /// <returns>Service regiters</returns>
     public static IServiceCollection AddSwaggerServiceDI(this IServiceCollection services)
     {
         services.AddSwaggerGen(c =>

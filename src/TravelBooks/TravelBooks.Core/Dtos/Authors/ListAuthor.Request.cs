@@ -1,7 +1,6 @@
-﻿using System;
-namespace TravelBooks.Core.Dtos;
+﻿namespace TravelBooks.Core.Dtos;
 
-public record ListAuthorRequest: BaseRequest
+public record ListAuthorRequest : BaseRequest
 {
 }
 

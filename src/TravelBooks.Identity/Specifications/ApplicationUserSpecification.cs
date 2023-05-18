@@ -7,12 +7,12 @@ public class ApplicationUserSpecification : Specification<ApplicationUser>
         Query.Where(i => i.UserName == UserName);
     }
 
-     public ApplicationUserSpecification(string UserName, string Password)
+    public ApplicationUserSpecification(string UserName, string Password)
     {
         Query.Where(i => i.UserName == UserName && i.Password == Password);
     }
 
-     public ApplicationUserSpecification(Guid Id)
+    public ApplicationUserSpecification(Guid Id)
     {
         Query.Where(i => i.Id == Id);
     }

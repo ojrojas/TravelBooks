@@ -1,8 +1,10 @@
 ﻿namespace TravelBooks.Identity.Endpoints;
 
+[Authorize]
+
 [ApiController]
 [Route("api/[controller]")]
-public class ListApplicationUser: ControllerBase
+public class ListApplicationUser : ControllerBase
 {
     private readonly IApplicationUserService _service;
 

@@ -1,5 +1,8 @@
 ﻿namespace TravelBooks.Identity.Configuration;
 
+/// <summary>
+/// Encrypt configuration
+/// </summary>
 public class OptionEncrypt
 {
     public string Salt { get; set; }

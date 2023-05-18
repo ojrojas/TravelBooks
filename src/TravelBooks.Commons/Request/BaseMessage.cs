@@ -2,7 +2,7 @@
 
 public record BaseMessage
 {
-	protected Guid _correlation = Guid.NewGuid();
-	public Guid Correlation => _correlation;
+    protected Guid _correlation = Guid.NewGuid();
+    public Guid Correlation => _correlation;
 }
 

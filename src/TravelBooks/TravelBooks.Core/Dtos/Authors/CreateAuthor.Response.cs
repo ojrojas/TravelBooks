@@ -1,11 +1,11 @@
 ﻿namespace TravelBooks.Core.Dtos;
 
-public record CreateAuthorResponse: BaseResponse
+public record CreateAuthorResponse : BaseResponse
 {
-	public CreateAuthorResponse(Guid correlation): base(correlation)
-	{
-	}
+    public CreateAuthorResponse(Guid correlation) : base(correlation)
+    {
+    }
 
-	public Author AuthorCreated { get; set; } = null!;
+    public Author AuthorCreated { get; set; } = null!;
 }
 

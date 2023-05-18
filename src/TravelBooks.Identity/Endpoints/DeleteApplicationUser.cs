@@ -1,10 +1,11 @@
 ﻿namespace TravelBooks.Identity.Endpoints;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class DeleteApplicationUser : ControllerBase
 {
-	private readonly IApplicationUserService _service;
+    private readonly IApplicationUserService _service;
 
     public DeleteApplicationUser(IApplicationUserService service)
     {
@@ -17,9 +18,9 @@ public class DeleteApplicationUser : ControllerBase
       Description = "Delete applicationuser",
       OperationId = "applicationuser.deleteapplicationuser",
       Tags = new[] { "ApplicationUserEndpoint" })]
-    public async ValueTask<DeleteApplicationUserResponse> Handle([FromRoute]DeleteApplicationUserRequest request, CancellationToken cancellationToken)
-	{
-		return await _service.DeleteUserApplicationAsync(request, cancellationToken);
-	}
+    public async ValueTask<DeleteApplicationUserResponse> Handle([FromRoute] DeleteApplicationUserRequest request, CancellationToken cancellationToken)
+    {
+        return await _service.DeleteUserApplicationAsync(request, cancellationToken);
+    }
 }
 

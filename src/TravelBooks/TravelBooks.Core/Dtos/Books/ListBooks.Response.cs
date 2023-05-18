@@ -1,12 +1,11 @@
-﻿using System;
-namespace TravelBooks.Core.Dtos;
+﻿namespace TravelBooks.Core.Dtos;
 
-public record ListBooksResponse: BaseResponse
+public record ListBooksResponse : BaseResponse
 {
-	public ListBooksResponse(Guid correlation): base(correlation)
-	{
-	}
+    public ListBooksResponse(Guid correlation) : base(correlation)
+    {
+    }
 
-	public IEnumerable<Book> Books { get; set; } = null!;
+    public IEnumerable<Book> Books { get; set; } = null!;
 }
 

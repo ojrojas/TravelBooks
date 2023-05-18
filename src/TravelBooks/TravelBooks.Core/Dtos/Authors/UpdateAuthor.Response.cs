@@ -2,7 +2,7 @@
 
 public record UpdateAuthorResponse : BaseResponse
 {
-    public UpdateAuthorResponse(Guid correlation): base(correlation) { }
+    public UpdateAuthorResponse(Guid correlation) : base(correlation) { }
     public Author AuthorUpdated { get; set; } = null!;
 }
 

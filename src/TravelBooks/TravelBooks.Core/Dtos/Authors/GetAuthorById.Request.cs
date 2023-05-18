@@ -1,7 +1,6 @@
-﻿using System;
-namespace TravelBooks.Core.Dtos;
+﻿namespace TravelBooks.Core.Dtos;
 
-public record GetAuthorByIdRequest: BaseRequest
+public record GetAuthorByIdRequest : BaseRequest
 {
     public Guid Id { get; set; }
 }

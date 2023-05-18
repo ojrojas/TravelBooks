@@ -1,11 +1,11 @@
 ﻿namespace TravelBooks.Identity.Dtos;
 
-public record DeleteApplicationUserResponse: BaseResponse
+public record DeleteApplicationUserResponse : BaseResponse
 {
-	public DeleteApplicationUserResponse(Guid correlation): base(correlation)
-	{
-	}
+    public DeleteApplicationUserResponse(Guid correlation) : base(correlation)
+    {
+    }
 
-	public ApplicationUser ApplicationUserDeleted { get; set; }
+    public ApplicationUser ApplicationUserDeleted { get; set; }
 }
 

@@ -1,6 +1,4 @@
-﻿using TravelBooks.Identity.Data;
-
-namespace TravelBooks.Tests.Contexts
+﻿namespace TravelBooks.Tests.Contexts
 {
     public class TestTravelIdentityDbContext : TravelBooksIdentityContext
     {
