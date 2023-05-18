@@ -1,11 +1,4 @@
-﻿using TravelBooks.Api.Controllers;
-using TravelBooks.Core.Dtos;
-using TravelBooks.Core.Entities;
-using TravelBooks.Core.Repositories;
-using TravelBooks.Core.Services;
-using TravelBooks.Infraestructure.Data;
-
-namespace TravelBooks.Tests.TravelBooks.Api;
+﻿namespace TravelBooks.Tests.TravelBooks.Api;
 public class AuthorShould
 {
     private AuthorsController _controller;

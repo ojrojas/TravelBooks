@@ -1,6 +1,4 @@
-﻿using TravelBooks.Core.Entities;
-
-namespace TravelBooks.Tests.TravelBooks.Api;
+﻿namespace TravelBooks.Tests.TravelBooks.Api;
 internal static class SampleAuthorsBooksAndEditorials
 {
     public static IEnumerable<Author> GetSampleAuthors() =>
